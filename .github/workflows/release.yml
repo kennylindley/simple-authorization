@@ -1,0 +1,16 @@
+on: 
+  release:
+    types: [ published ]
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    env:
+      SIMPLY_MADE_APPS_GITHUB_TOKEN: ${{ secrets.SIMPLY_MADE_APPS_GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - run: npm install -g yarn
+      - run: yarn install
+      - run: yarn build
+      - run: yarn publish
