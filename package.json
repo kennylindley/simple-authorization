@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
+    "clean": "rm -rf coverage node_modules tmp && yarn cache clean",
     "lint": "eslint .",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
