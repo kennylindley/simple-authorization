@@ -2,14 +2,21 @@
   "name": "@simplymadeapps/simple-authorization",
   "version": "0.2.3",
   "description": "Authorization through JavaScript classes with support for React",
+  "files": [
+    "index.js"
+  ],
   "homepage": "https://github.com/simplymadeapps/simple-authorization",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
+    "build": "rollup -c",
     "clean": "rm -rf coverage node_modules tmp && yarn cache clean",
+    "cspell": "cspell **/*.*",
     "lint": "eslint .",
     "test": "jest --coverage",
-    "test:all": "yarn test",
+    "test:all": "yarn test && yarn test:spell",
+    "test:eslint": "jest --config=./tests/__support__/jest/eslint.config.js",
+    "test:spell": ".jenkins/cspell.sh",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -17,7 +24,14 @@
     "url": "git+https://github.com/simplymadeapps/simple-authorization.git"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
     "@babel/preset-react": "^7.0.0",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^28.1.2",
+    "babel-loader": "^8.2.5",
     "cspell": "^6.2.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -26,9 +40,14 @@
     "jest": "^24.9.0",
     "jest-runner-eslint": "^1.0.1",
     "jest-snapshot-serializer-function-name": "^1.1.0",
+    "prettier": "^2.7.1",
     "prop-types": "^15.0.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "rollup": "^2.76.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-cpy": "^2.0.1",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "peerDependencies": {
     "prop-types": ">=15.0.0",

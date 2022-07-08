@@ -1,0 +1,11 @@
+{
+  "name": "@simplymadeapps/create-release",
+  "version": "1.0.0",
+  "description": "Creates Releases Simply Made Apps library component",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@octokit/core": "^3.6.0"
+  }
+}
