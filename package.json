@@ -9,6 +9,7 @@
     "clean": "rm -rf coverage node_modules tmp && yarn cache clean",
     "lint": "eslint .",
     "test": "jest --coverage",
+    "test:all": "yarn test",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "cspell": "^6.2.3",
+    "jest-runner-eslint": "^1.0.1",
     "prop-types": "^15.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
