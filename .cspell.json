@@ -1,0 +1,28 @@
+{
+  "version": "0.2",
+  "dictionaries": [
+    "bash",
+    "companies",
+    "css",
+    "en_US",
+    "filetypes",
+    "fonts",
+    "html",
+    "node",
+    "npm",
+    "softwareTerms",
+    "typescript"
+  ],
+  "ignorePaths": [
+    "/coverage/**",
+    "/node_modules/**",
+    "/tests/**/*.snap",
+    "/tmp/**",
+    "/yarn-error.log",
+    "/yarn.lock"
+  ],
+  "language": "en",
+  "words": [
+    "simplymadeapps"
+  ]
+}
