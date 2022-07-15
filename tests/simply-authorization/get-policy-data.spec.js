@@ -1,5 +1,5 @@
-let SimpleAuthorization = require("../src");
-let { getPolicyData } = SimpleAuthorization;
+import { getPolicyData } from "../../src";
+import SimpleAuthorization from "../../src";
 
 SimpleAuthorization.policyData = () => {
   return { currentUser: { id: 1 }, role: { createPost: true, deletePost: false, id: 2 } };

@@ -1,18 +1,23 @@
-import { Authorize } from "../src";
+import { Authorize } from "../../src";
+import policy from "../../src/simple-authorization/policy";
 import React from "react";
 import { shallow } from "enzyme";
-import SimpleAuthorization from "../src";
 
 let mockPolicyInstance;
 
-jest.mock("../src/simple-authorization/policy", () => mockPolicyInstance);
+jest.mock("../../src/simple-authorization/policy", () => {
+  return jest.fn().mockImplementation(() => {
+    return mockPolicyInstance;
+  });
+});
 
 afterEach(() => {
   Authorize.instances = [];
+  policy.mockClear();
 });
 
 describe("Authorize#componentDidMount", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockPolicyInstance = { view: jest.fn() };
   });
 
@@ -32,7 +37,7 @@ describe("Authorize#componentDidMount", () => {
 });
 
 describe("Authorize#componentWillUnmount", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockPolicyInstance = { view: jest.fn() };
   });
 
@@ -66,11 +71,11 @@ describe("Authorize#isPermitted", () => {
           <button className="update-user" />
         </Authorize>
       );
-      SimpleAuthorization.policy.mockClear();
       mockPolicyInstance.update.mockClear();
+      policy.mockClear();
 
       expect(component.instance().isPermitted()).toBe(true);
-      expect(SimpleAuthorization.policy.mock.calls).toEqual([["User", { id: 5 }]]);
+      expect(policy.mock.calls).toEqual([["User", { id: 5 }]]);
       expect(mockPolicyInstance.update.mock.calls).toHaveLength(1);
     });
 
@@ -96,11 +101,11 @@ describe("Authorize#isPermitted", () => {
           <button className="new-user" />
         </Authorize>
       );
-      SimpleAuthorization.policy.mockClear();
       mockPolicyInstance.new.mockClear();
+      policy.mockClear();
 
       expect(component.instance().isPermitted()).toBe(false);
-      expect(SimpleAuthorization.policy.mock.calls).toEqual([["user"]]);
+      expect(policy.mock.calls).toEqual([["user"]]);
       expect(mockPolicyInstance.new.mock.calls).toHaveLength(1);
     });
 
@@ -149,7 +154,7 @@ describe("Authorize#render", () => {
 });
 
 describe("Authorize.forceUpdateAll", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockPolicyInstance = { view: jest.fn() };
   });
 

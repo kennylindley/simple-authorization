@@ -1,6 +1,6 @@
-let SimpleAuthorization = require("../src");
-let UserPolicy = require("./__support__/policies/UserPolicy");
-let { policy } = SimpleAuthorization;
+import policy from "../../src/simple-authorization/policy";
+import SimpleAuthorization from "../../src";
+import UserPolicy from "../__support__/policies/UserPolicy";
 
 /**
  * Class for testing that the policy function throws errors when a matching policy can't be found.
