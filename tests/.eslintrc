@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "jsdoc/require-description": "off",
+    "jsdoc/require-jsdoc": "off",
+    "react/button-has-type": "off"
+  }
+}

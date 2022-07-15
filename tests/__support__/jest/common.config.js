@@ -9,7 +9,7 @@ module.exports = {
   snapshotSerializers: ["jest-snapshot-serializer-function-name"],
   testPathIgnorePatterns: ignorePatterns,
   transform: {
-    "^.+\\.js$": "babel-jest"
+    "^.+\\.js$": "babel-jest",
   },
-  watchPathIgnorePatterns: ignorePatterns
+  watchPathIgnorePatterns: ignorePatterns,
 };

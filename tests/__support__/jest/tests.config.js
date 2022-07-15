@@ -5,5 +5,5 @@ module.exports = {
   displayName: "Tests",
   runner: "jest-runner",
   testEnvironment: "jsdom",
-  testMatch: ["<rootDir>/tests/**/*.spec.js"]
+  testMatch: ["<rootDir>/tests/**/*.spec.js"],
 };

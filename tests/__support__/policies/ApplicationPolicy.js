@@ -9,10 +9,9 @@ class ApplicationPolicy {
    * @param {object} policyData The data needed for all policies
    */
   constructor(policyData) {
-    var keys = Object.keys(policyData);
+    let keys = Object.keys(policyData);
 
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
+    for (const key of keys) {
       this[key] = policyData[key];
     }
   }

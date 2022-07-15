@@ -5,5 +5,5 @@ module.exports = {
   displayName: "ESLint",
   runner: "jest-runner-eslint",
   testEnvironment: "node",
-  testMatch: ["<rootDir>/**/*.js"]
+  testMatch: ["<rootDir>/**/*.js"],
 };

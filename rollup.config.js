@@ -7,6 +7,6 @@ export default [
     external: ["prop-types", "react", "react-dom"],
     input: "src/index.js",
     output: [{ file: "index.js", format: "cjs" }],
-    plugins: [nodeResolve(), commonjs({ include: [/node_modules/] }), babel({ exclude: "node_modules/**" })]
-  }
+    plugins: [nodeResolve(), commonjs({ include: [/node_modules/] }), babel({ exclude: "node_modules/**" })],
+  },
 ];

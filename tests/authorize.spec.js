@@ -1,14 +1,11 @@
-var Authorize = require("../src").Authorize;
-var React = require("react");
-var shallow = require("enzyme").shallow;
-var SimpleAuthorization = require("../src");
+import { Authorize } from "../src";
+import React from "react";
+import { shallow } from "enzyme";
+import SimpleAuthorization from "../src";
 
 let mockPolicyInstance;
-beforeEach(() => {
-  jest.spyOn(SimpleAuthorization, "policy").mockImplementation(() => {
-    return mockPolicyInstance;
-  });
-});
+
+jest.mock("../src/simple-authorization/policy", () => mockPolicyInstance);
 
 afterEach(() => {
   Authorize.instances = [];
@@ -21,7 +18,7 @@ describe("Authorize#componentDidMount", () => {
 
   it("adds the component instance to Authorize.instances", () => {
     const component = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>,
       { disableLifecycleMethods: true }
@@ -41,7 +38,7 @@ describe("Authorize#componentWillUnmount", () => {
 
   it("removes the component instance to Authorize.instances", () => {
     const component = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>,
       { disableLifecycleMethods: true }
@@ -65,7 +62,7 @@ describe("Authorize#isPermitted", () => {
       mockPolicyInstance.update.mockReturnValue(true);
 
       const component = shallow(
-        <Authorize perform="update" on="User" containing={{ id: 5 }}>
+        <Authorize containing={{ id: 5 }} on="User" perform="update">
           <button className="update-user" />
         </Authorize>
       );
@@ -74,14 +71,14 @@ describe("Authorize#isPermitted", () => {
 
       expect(component.instance().isPermitted()).toBe(true);
       expect(SimpleAuthorization.policy.mock.calls).toEqual([["User", { id: 5 }]]);
-      expect(mockPolicyInstance.update.mock.calls.length).toBe(1);
+      expect(mockPolicyInstance.update.mock.calls).toHaveLength(1);
     });
 
     it("returns the opposite boolean if the `cannot` prop is used", () => {
       mockPolicyInstance.update.mockReturnValue(true);
 
       const component = shallow(
-        <Authorize cannot perform="update" on="User" containing={{ id: 5 }}>
+        <Authorize cannot containing={{ id: 5 }} on="User" perform="update">
           <button className="update-user" />
         </Authorize>
       );
@@ -95,7 +92,7 @@ describe("Authorize#isPermitted", () => {
       mockPolicyInstance.new.mockReturnValue(false);
 
       const component = shallow(
-        <Authorize perform="new" on="user">
+        <Authorize on="user" perform="new">
           <button className="new-user" />
         </Authorize>
       );
@@ -104,14 +101,14 @@ describe("Authorize#isPermitted", () => {
 
       expect(component.instance().isPermitted()).toBe(false);
       expect(SimpleAuthorization.policy.mock.calls).toEqual([["user"]]);
-      expect(mockPolicyInstance.new.mock.calls.length).toBe(1);
+      expect(mockPolicyInstance.new.mock.calls).toHaveLength(1);
     });
 
     it("returns the opposite boolean if the `cannot` prop is used", () => {
       mockPolicyInstance.update.mockReturnValue(true);
 
       const component = shallow(
-        <Authorize cannot perform="new" on="user">
+        <Authorize cannot on="user" perform="new">
           <button className="new-user" />
         </Authorize>
       );
@@ -130,7 +127,7 @@ describe("Authorize#render", () => {
     mockPolicyInstance.view.mockReturnValue(true);
 
     const component = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>
     );
@@ -142,12 +139,12 @@ describe("Authorize#render", () => {
     mockPolicyInstance.view.mockReturnValue(false);
 
     const component = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>
     );
 
-    expect(component.instance().render()).toBe(null);
+    expect(component.instance().render()).toBeNull();
   });
 });
 
@@ -158,7 +155,7 @@ describe("Authorize.forceUpdateAll", () => {
 
   it("calls `forceUpdate` on each of the mounted Authorize instances", () => {
     const component1 = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>
     );
@@ -166,7 +163,7 @@ describe("Authorize.forceUpdateAll", () => {
     jest.spyOn(instance1, "forceUpdate");
 
     const component2 = shallow(
-      <Authorize perform="view" on="UserBoard">
+      <Authorize on="UserBoard" perform="view">
         <div className="user-board" />
       </Authorize>
     );
@@ -175,7 +172,7 @@ describe("Authorize.forceUpdateAll", () => {
 
     Authorize.forceUpdateAll();
 
-    expect(instance1.forceUpdate.mock.calls.length).toBe(1);
-    expect(instance2.forceUpdate.mock.calls.length).toBe(1);
+    expect(instance1.forceUpdate.mock.calls).toHaveLength(1);
+    expect(instance2.forceUpdate.mock.calls).toHaveLength(1);
   });
 });
