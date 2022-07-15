@@ -1,9 +1,5 @@
 # Simple Authorization
 
-[![Build Status](https://github.com/simplymadeapps/simple-authorization/actions/workflows/tests.yml/badge.svg)](https://github.com/simplymadeapps/simple-authorization/actions/workflows/tests.yml)
-[![Code Climate](https://codeclimate.com/github/simplymadeapps/simple-authorization/badges/gpa.svg)](https://codeclimate.com/github/simplymadeapps/simple-authorization)
-[![Test Coverage](https://codeclimate.com/github/simplymadeapps/simple-authorization/badges/coverage.svg)](https://codeclimate.com/github/simplymadeapps/simple-authorization/coverage)
-
 Simple Authorization is a JavaScript library inspired by [Pundit](https://github.com/varvet/pundit)
 for performing user authorization using simple JavaScript classes. If you've used Pundit in
 a Ruby project, you'll be instantly familiar.
@@ -13,7 +9,7 @@ a Ruby project, you'll be instantly familiar.
 Install the package via [Yarn](https://yarnpkg.com):
 
 ```bash
-yarn add simple-authorization
+yarn add @simplymadeapps/simple-authorization
 ```
 
 ## Configuration
@@ -194,7 +190,3 @@ export default props => {
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-## License
-
-This module is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
